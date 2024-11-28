@@ -1,0 +1,26 @@
+@model MovieSearchResult
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search Results</h2>
+
+@if (Model.Results.Count == 0)
+{
+    <div class="alert alert-warning">
+        No movies found.
+    </div>
+}
+else
+{
+    <div class="list-group">
+        @foreach (var movie in Model.Results)
+        {
+            <a href="@Url.Action("Details", "Movie", new { id = movie.Id })" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">@movie.Title</h5>
+                <p class="mb-1">@movie.Overview</p>
+            </a>
+        }
+    </div>
+}

@@ -1,0 +1,69 @@
+@model MovieSearchResult
+
+<div class="space-y-6">
+    <h1 class="text-3xl font-bold text-gray-900">Filmes Populares</h1>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        @foreach (var movie in Model.Results)
+        {
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                @if (!string.IsNullOrEmpty(movie.PosterPath))
+                {
+                    <img src="https://image.tmdb.org/t/p/w500@(movie.PosterPath)" 
+                         alt="@movie.Title"
+                         class="w-full h-64 object-cover" />
+                }
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-900">@movie.Title</h2>
+                    <p class="mt-2 text-sm text-gray-600 line-clamp-3">@movie.Overview</p>
+                    <a href="@Url.Action("Details", new { id = movie.Id })" 
+                       class="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500">
+                        Ver Detalhes
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (Model.HasNextPage)
+    {
+        <div class="flex justify-center mt-8">
+            <a href="@Url.Action("Popular", new { page = Model.Page + 1 })"
+               class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-500">
+                Carregar Mais
+            </a>
+        </div>
+    }
+</div> bg-indigo-600 
+                                      text-white rounded-lg hover:bg-indigo-500 transition-colors">
+                                Ver Detalhes
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Pagination -->
+    @if (Model.HasNextPage)
+    {
+        <div class="flex justify-center mt-8">
+            <a href="@Url.Action("Popular", new { page = Model.Page + 1 })"
+               class="group px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 
+                      transition-all duration-300 transform hover:scale-105">
+                <span class="flex items-center gap-2">
+                    Carregar Mais
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" 
+                              stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </span>
+            </a>
+        </div>
+    }
+</div>

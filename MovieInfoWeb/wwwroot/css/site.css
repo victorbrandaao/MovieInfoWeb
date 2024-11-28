@@ -1,0 +1,92 @@
+/* Importações do Tailwind */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Estilos personalizados */
+@layer components {
+    .movie-card {
+        @apply bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105;
+    }
+
+    .movie-poster {
+        @apply w-full h-96 object-cover;
+    }
+
+    .movie-info {
+        @apply p-4 space-y-2;
+    }
+
+    .movie-title {
+        @apply text-xl font-bold text-gray-900 line-clamp-2;
+    }
+
+    .movie-overview {
+        @apply text-sm text-gray-600 line-clamp-3;
+    }
+
+    .btn-primary {
+        @apply bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 
+               transition-colors duration-200 inline-block;
+    }
+
+    .search-input {
+        @apply w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 
+               focus:ring-indigo-400 focus:border-transparent;
+    }
+
+    .page-container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+    }
+
+    .grid-movies {
+        @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+    }
+
+    .nav-link {
+        @apply text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium
+               transition-colors duration-200;
+    }
+
+    .nav-link-active {
+        @apply bg-indigo-700 text-white;
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #6366f1;
+        border-radius: 9999px;
+    }
+}
+
+/* Animações */
+@layer utilities {
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .animate-fadeIn {
+        animation: fadeIn 0.5s ease-in;
+    }
+}
+
+/* Loading spinner */
+.spinner {
+    @apply w-8 h-8 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+    .movie-poster {
+        @apply h-72;
+    }
+}

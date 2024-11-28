@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MovieInfoWeb</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="h-full bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <header class="bg-indigo-600 dark:bg-indigo-800 shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-white font-bold text-xl hover:text-indigo-200 transition-colors">
+                        🎬 MovieInfoWeb
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <form asp-controller="Movie" asp-action="Search" method="post" class="flex gap-2">
+                        <input type="text" name="query" placeholder="Buscar filmes..." 
+                               class="w-64 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 
+                                      border border-gray-300 dark:border-gray-700
+                                      focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500
+                                      text-gray-900 dark:text-gray-100" />
+                        <button type="submit" 
+                                class="px-4 py-2 bg-indigo-500 text-white rounded-lg
+                                       hover:bg-indigo-400 active:bg-indigo-600 
+                                       transition-colors duration-200">
+                            Buscar
+                        </button>
+                    </form>
+                    <button onclick="toggleTheme()" 
+                            class="p-2 rounded-lg hover:bg-indigo-500 text-white">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        @RenderBody()
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white mt-auto">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <p class="text-center">&copy; 2024 - MovieInfoWeb</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark')
+                localStorage.theme = 'light'
+            } else {
+                document.documentElement.classList.add('dark')
+                localStorage.theme = 'dark'
+            }
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
